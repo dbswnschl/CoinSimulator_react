@@ -1,0 +1,12 @@
+table{
+    text-align : center;
+    border : 1px solid;
+    margin: auto;
+}
+.logo{
+    text-align: center;
+}
+.menus{
+    border : 1px solid;
+    text-align : center;
+}
