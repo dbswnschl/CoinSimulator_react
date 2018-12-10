@@ -7,7 +7,7 @@ class MainPage extends Component {
     render(){
         return (
             <div>
-                <b>메인</b> 페이지 입니다. {this.props.name}
+                <b>메인</b> 페이지 입니다. 
             </div>
         );
     }
