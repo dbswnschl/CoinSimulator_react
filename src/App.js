@@ -7,12 +7,15 @@ import TopPage from './top';
 import MainPage from './main';
 
 import LoginPage from './login';
+
+
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = { page: 0 };
     this.changePage = this.changePage.bind(this);
+
   }
   componentDidUpdate(prevProps, prevState) {
     // console.log(`UPDATE ${prevProps}, ${prevState}`);
