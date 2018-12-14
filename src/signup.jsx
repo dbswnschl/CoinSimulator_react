@@ -5,9 +5,8 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = { email: '', password: '' };
-        this.action = "http://localhost:8000/api/books/";
+        this.action = "http://localhost:8000/api/signup/";
         this.method = 'post'
-        this.formData = new FormData();
         this.isConfirmPassword = null;
     }
     handleEmailChange = (event) => {
