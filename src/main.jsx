@@ -8,25 +8,41 @@ class MainPage extends Component {
     }
     constructor(props) {
         super(props);
-        this.state = {
-            coin_table: <tr><td></td></tr>,
-            filter_table: <tr><td></td></tr>,
-            filter: {
-                value: ""
-            }
-        }
+        this.state = props.state;
         this.market_all();
+        this.changeState = this.changeState.bind(this);
     }
+    clickCoin = (t) => {
+        // t.preventDefault();
+        if(this.state.is_logged_in == 1){
+            alert("로그인 후 이용 가능합니다.");
+        }else{
+            this.changeState(t.currentTarget.className)
+        
+        }
+    }
+    changeState=(market_name)=>{
+        this.setState({
+            market : market_name
+        });
+        this.props.changeState({
+            market : market_name
+        });
+    }
+
     market_all = () => {
         let table = [];
         axios.get('https://api.upbit.com/v1/market/all').then((response) => {
             let coins = response.data;
             coins.forEach(element => {
-                table.push(<tr key={element["market"]}>
-                    <td >{element["korean_name"]}({element["english_name"]})</td>
+                table.push(<tr onClick={this.clickCoin} className={element["market"]} key={element["market"]}>
                     <td  style={
-                    { width: '30%' }
-                }>{element["market"]}</td>
+                    {cursor:'pointer'}
+                } >{element["korean_name"]}({element["english_name"]})</td>
+                    <td style={
+                        { width: '30%',
+                        cursor:'pointer' }
+                    }>{element["market"]}</td>
                 </tr>);
             });
             this.setState({
@@ -55,7 +71,7 @@ class MainPage extends Component {
                         word = e.props.children.join('');
                     }
                     let sc = word.toLowerCase().search(str);
-                    if (sc > -1){
+                    if (sc > -1) {
                         new_table.push(element);
                         return false;
                     }
@@ -66,7 +82,7 @@ class MainPage extends Component {
                     filter_table: new_table
                 })
             }
-        }else{
+        } else {
             this.setState({
                 filter_table: this.state.coin_table
             });
@@ -76,7 +92,6 @@ class MainPage extends Component {
     render() {
         return (
             <div>
-                <b>메인</b> 페이지 입니다.
                 <h2>코인 선택</h2>
                 <table style={
                     { width: '20%' }
