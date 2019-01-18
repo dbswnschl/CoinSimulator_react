@@ -22,12 +22,14 @@ class TopPage extends Component {
                 <div className='logo'>LOGO</div>
                 <div className='menus'>
                     <table>
+                        <tbody>
                         <tr>
                             <td><a href='#' onClick={this.goHome}>메인</a></td>
                             <td>
                                 {this.props.state.is_logged_in === 0 ? <a href='#' onClick={this.goLogin}>로그인</a> : <a href = '#'>로그아웃</a>}
                                 </td>
                         </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
